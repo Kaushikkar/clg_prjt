@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class ShootPosAdj : MonoBehaviour
 {
-    public GameObject objToFollow;
+    public Transform initialtransform;
 
-    // Update is called once per frame
+    private void Start()
+    {
+       
+    }
     void Update()
     {
-        gameObject.transform.position = objToFollow.transform.position;
-        gameObject.transform.rotation= objToFollow.transform.rotation;
+       
+
     }
 }

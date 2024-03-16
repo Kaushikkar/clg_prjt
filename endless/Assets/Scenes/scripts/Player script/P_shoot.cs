@@ -55,11 +55,8 @@ public class PlayerShooting : MonoBehaviour
 
     void InstantiateBullet()
     {
-        // Use the player's rotation to instantiate the bullet
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position + offset, transform.rotation);
-
-        // Rotate the bulletSpawnPoint to match the player's rotation
-        bulletSpawnPoint.rotation = transform.rotation;
+        // Use the rotation of the bulletSpawnPoint to instantiate the bullet
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position + offset, bulletSpawnPoint.rotation);
 
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
 

@@ -22,5 +22,6 @@ public class RoadSpawner : MonoBehaviour
         float newz = roads[roads.Count - 1].transform.position.z + offset;
         movedRoad.transform.position = new Vector3(0, 0, newz);
         roads.Add(movedRoad);
+
     }
 }

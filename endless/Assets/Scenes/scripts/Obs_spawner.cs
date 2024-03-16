@@ -24,7 +24,7 @@ public class SpawnPointManager : MonoBehaviour
         for (int i = 0; i < totalObstaclesToSpawn; i++)
         {
             objectToSpawn = manager.Randomobs();
-            Debug.Log("Obj Spawned: " + objectToSpawn);
+            
 
             if (unusedSp.Count > 0)
             {

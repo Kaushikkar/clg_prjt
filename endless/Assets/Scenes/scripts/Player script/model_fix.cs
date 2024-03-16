@@ -1,22 +1,24 @@
 using UnityEngine;
 
-public class ModelFix : MonoBehaviour
+public class model_fix : MonoBehaviour
 {
-    public GameObject objToFollow;
-    public Vector3 offsetPosition;
-    public Vector3 offsetRotation;
+    public Vector3 positionOffset;
+    public Vector3 rotationOffset;
+
+    private Transform parentTransform;
+    private Transform childTransform;
+
+    void Start()
+    {
+        // Get references to parent and child transforms
+        parentTransform = transform.parent;
+        childTransform = transform;
+    }
 
     void Update()
     {
-        if (objToFollow != null)
-        {
-            
-            transform.position = objToFollow.transform.position + offsetPosition;
-            transform.rotation = objToFollow.transform.rotation * Quaternion.Euler(offsetRotation);
-        }
-        else
-        {
-            Debug.LogWarning("Target object is not assigned.");
-        }
+        // Copy parent's position and rotation to the child with offsets
+        childTransform.position = parentTransform.position + positionOffset;
+        //childTransform.rotation = parentTransform.rotation * Quaternion.Euler(rotationOffset);
     }
 }

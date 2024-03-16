@@ -15,28 +15,31 @@ public class LookAt : MonoBehaviour
     void Update()
     {
         GameObject lookAt = enemyDetection.closestEnemy;
-
+        
         if (lookAt != null)
         {
-            //Debug.Log("looking");
-            LookAtObject(lookAt);
+            Debug.Log("look activated");
+            lookAtObject(lookAt);
         }
         else
         {
-
-
-
-            Quaternion targetRotation = initialRotation;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            Debug.Log("initial activated");
+            initRotation();
         }
     }
 
-    void LookAtObject(GameObject target)
+    void lookAtObject(GameObject target)
     {
+        
         Vector3 directionToTarget = target.transform.position - transform.position;
+        directionToTarget.y = 0f; // Ensure rotation only happens on the horizontal plane
         Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
 
-
-        transform.rotation = lookRotation;
+        // Only rotate around the Y-axis
+        transform.rotation = Quaternion.Euler(0f, lookRotation.eulerAngles.y, 0f);
+    }
+    void initRotation()
+    {
+        transform.rotation= Quaternion.Euler(0f,initialRotation.eulerAngles.y, 0f);
     }
 }
