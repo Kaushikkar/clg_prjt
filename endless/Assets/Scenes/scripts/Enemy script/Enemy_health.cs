@@ -7,9 +7,10 @@ public class Enemy_health : MonoBehaviour
     public int remainingHealth;
     public int damage = 1; // Assuming you want to deal damage to the enemy when hit
     public Enem_animC Anim;
-
+    
     void Start()
     {
+        
         remainingHealth = enemHealth;
     }
 
@@ -47,7 +48,9 @@ public class Enemy_health : MonoBehaviour
 
     private IEnumerator Dead()
     {
+        gameObject.tag = "dead";
         yield return new WaitForSeconds(6);
+
         Destroy(gameObject);
     }
 }

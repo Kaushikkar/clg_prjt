@@ -10,4 +10,11 @@ public class Obs_collision_manager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Update()
+    {
+        if(gameObject.transform.position.y < 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

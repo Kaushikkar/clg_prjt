@@ -1049,7 +1049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2840201622173824603}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2451077, y: 0.05000019, z: 107.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1060,7 +1060,7 @@ Transform:
   - {fileID: 18077563750002696}
   - {fileID: 6949597606802001013}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8845509661045372571
 Animator:
   serializedVersion: 5
@@ -1145,22 +1145,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6479323865176209767, guid: f2ae058755524174a974ec79dee91695, type: 3}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 256
   speed: 10
   rotationSpeed: 5
-  timeBetweenAttacks: 1
-  sightRange: 20.86
-  attackRange: 3.2
-  separationDistance: 1
-  separationStrength: 1
+  sightRange: 30
+  attackRange: 10
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!114 &3406027035583833139

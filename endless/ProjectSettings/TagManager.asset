@@ -10,6 +10,7 @@ TagManager:
   - Spawnpoint
   - Enemies
   - Bullet
+  - dead
   layers:
   - Default
   - TransparentFX
