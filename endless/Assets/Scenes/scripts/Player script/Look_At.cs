@@ -18,12 +18,12 @@ public class LookAt : MonoBehaviour
         
         if (lookAt != null)
         {
-            Debug.Log("look activated");
+            //Debug.Log("look activated");
             lookAtObject(lookAt);
         }
         else
         {
-            Debug.Log("initial activated");
+            //Debug.Log("initial activated");
             initRotation();
         }
     }

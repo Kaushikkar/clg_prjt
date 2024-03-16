@@ -35,6 +35,8 @@ public class EnemyAI : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         //Debug.Log(health.remainingHealth);
+        Debug.Log("sighted:" + playerInSightRange);
+        Debug.Log("attacked" + playerInAttackRange);
         if (playerInSightRange && !playerInAttackRange && health.remainingHealth>=-3) ChasePlayer();
         if (playerInAttackRange && playerInSightRange && health.remainingHealth >= -3) AttackPlayer();
     }
