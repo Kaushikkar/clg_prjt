@@ -7,16 +7,17 @@ public class Enemy_health : MonoBehaviour
     public int remainingHealth;
     public int damage = 1; // Assuming you want to deal damage to the enemy when hit
     public Enem_animC Anim;
-    
+    public EnemyAI ai;
     void Start()
     {
         
         remainingHealth = enemHealth;
+        ai = gameObject.GetComponent<EnemyAI>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (other.CompareTag("Bullet"))
         {
             // Decrease enemy health based on the damage value
             remainingHealth -= damage;
@@ -26,7 +27,6 @@ public class Enemy_health : MonoBehaviour
             {
                 if (Anim != null)
                 {
-                    Anim.deathAnim();
                     StartCoroutine(Dead());
                 }
                 else
@@ -36,21 +36,23 @@ public class Enemy_health : MonoBehaviour
                 }
 
                 // Destroy the entire bullet GameObject after enemy death
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
             }
             else
             {
                 // If the enemy is not dead, only destroy the bullet
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
             }
         }
     }
 
+
     private IEnumerator Dead()
     {
+        Anim.deathAnim();
         gameObject.tag = "dead";
+        ai.isDead = true;
         yield return new WaitForSeconds(6);
-
         Destroy(gameObject);
     }
 }

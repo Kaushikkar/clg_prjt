@@ -1049,7 +1049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2840201622173824603}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 1.2451077, y: 0.05000019, z: 107.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1060,7 +1060,7 @@ Transform:
   - {fileID: 18077563750002696}
   - {fileID: 6949597606802001013}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &8845509661045372571
 Animator:
   serializedVersion: 5
@@ -1097,7 +1097,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1129,7 +1129,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 126
   m_CollisionDetection: 1
 --- !u!114 &8829510181077663624
@@ -1151,9 +1151,10 @@ MonoBehaviour:
   speed: 10
   rotationSpeed: 5
   sightRange: 30
-  attackRange: 10
+  attackRange: 2.76
   playerInSightRange: 0
   playerInAttackRange: 0
+  isDead: 0
 --- !u!114 &3406027035583833139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,10 +1181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6f3b9280c2d734a9e6d449c9956d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemHealth: 10
+  enemHealth: 5
   remainingHealth: 0
   damage: 1
   Anim: {fileID: 3406027035583833139}
+  ai: {fileID: 0}
 --- !u!1 &3005070804057377100
 GameObject:
   m_ObjectHideFlags: 0

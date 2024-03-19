@@ -19,7 +19,7 @@ public class Cont_obsSpawner : MonoBehaviour
         updatedPosition= gameObject.transform.position;
         if(updatedPosition!=initialPosition)
         {
-            Debug.Log("Road moved"+gameObject.name);
+            //Debug.Log("Road moved"+gameObject.name);
             SpawnPointManager.SpawnObjectsAtRandomPoints();
             initialPosition = updatedPosition;
         }

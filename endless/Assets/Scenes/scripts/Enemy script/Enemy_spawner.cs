@@ -24,7 +24,7 @@ public class Enemy_spawner : MonoBehaviour
 
     void SpawnEnemies(int numberOfEnemies)
     {
-        randomize=Random.Range(1, numberOfEnemies);
+        randomize = Random.Range(1, numberOfEnemies);
         for (int i = 0; i < randomize; i++)
         {
             // Get a random enemy prefab from the manager
