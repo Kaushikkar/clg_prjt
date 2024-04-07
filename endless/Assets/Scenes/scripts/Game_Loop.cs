@@ -10,7 +10,8 @@ public class Game_Loop : MonoBehaviour
         if(hp.health <= 0 || player.transform.position.y<0 ||hp.isCollided)
         {
             
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            
+            SceneManager.LoadScene(2);
             
         }
     }

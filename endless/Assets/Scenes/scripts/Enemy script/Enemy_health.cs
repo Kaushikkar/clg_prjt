@@ -8,9 +8,10 @@ public class Enemy_health : MonoBehaviour
     public int damage = 1; // Assuming you want to deal damage to the enemy when hit
     public Enem_animC Anim;
     public EnemyAI ai;
+    public GameObject deathEffectPrefab; // Prefab of the object you want to spawn upon enemy death
+
     void Start()
     {
-        
         remainingHealth = enemHealth;
         ai = gameObject.GetComponent<EnemyAI>();
     }
@@ -46,13 +47,27 @@ public class Enemy_health : MonoBehaviour
         }
     }
 
-
     private IEnumerator Dead()
     {
+        // Disable the capsule collider before playing death animation
+        Collider colliderComponent = GetComponent<Collider>();
+        if (colliderComponent != null)
+        {
+            colliderComponent.enabled = false;
+        }
+
         Anim.deathAnim();
         gameObject.tag = "dead";
         ai.isDead = true;
+
+        // Spawn the death effect prefab at the enemy's position
+        if (deathEffectPrefab != null)
+        {
+            Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+        }
+
         yield return new WaitForSeconds(6);
         Destroy(gameObject);
     }
+
 }

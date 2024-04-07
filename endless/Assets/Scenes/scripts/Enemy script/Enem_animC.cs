@@ -18,11 +18,22 @@ public class Enem_animC : MonoBehaviour
     {
         followAnim();
         attackAnim();
-
+        idleAnim();
+    }
+    void idleAnim()
+    {
+        if(AI.isBlocked)
+        {
+            EnemyAnim.SetBool("isBlocked", true);
+        }
+        else
+        {
+            EnemyAnim.SetBool("isBlocked", false);
+        }
     }
     void followAnim()
     {
-        if (AI.playerInSightRange && AI.playerInAttackRange == false)
+        if (AI.playerInSightRange && AI.playerInAttackRange == false )
         {
             EnemyAnim.SetBool("followPlayer", AI.playerInSightRange);
         }

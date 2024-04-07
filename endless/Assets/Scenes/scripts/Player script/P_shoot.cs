@@ -18,9 +18,17 @@ public class PlayerShooting : MonoBehaviour
     public float bulletDespawnTime = 5f; // Adjust this as needed
     public int damage = 1;
 
+    // Add this field for the sound effect
+    public AudioClip shootSound;
+    private AudioSource audioSource;
+
+    // Volume control
+    public float volume = 1.0f; // Default volume
+
     private void Start()
     {
         bulletsRemaining = maxBullets;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -30,7 +38,7 @@ public class PlayerShooting : MonoBehaviour
         // Calculate time since the last shot
         timeSinceLastShot += Time.deltaTime;
 
-        if (bulletsRemaining > 0 && canShoot && !isReloading && timeSinceLastShot >= fireRate )
+        if (bulletsRemaining > 0 && canShoot && !isReloading && timeSinceLastShot >= fireRate)
         {
             InstantiateBullet();
             bulletsRemaining -= 1;
@@ -66,12 +74,22 @@ public class PlayerShooting : MonoBehaviour
         // Start coroutine to despawn the bullet after a certain time
         StartCoroutine(DestroyBulletAfterTime(bullet, bulletDespawnTime));
 
-        //Debug.Log("Shooting");
+        // Play the shoot sound effect with adjusted volume
+        if (shootSound != null)
+        {
+            audioSource.PlayOneShot(shootSound, volume);
+        }
     }
 
     private IEnumerator DestroyBulletAfterTime(GameObject bullet, float delay)
     {
         yield return new WaitForSeconds(delay);
         Destroy(bullet);
+    }
+
+    // Method to adjust the volume
+    public void SetVolume(float newVolume)
+    {
+        volume = newVolume;
     }
 }

@@ -1030,8 +1030,7 @@ GameObject:
   - component: {fileID: 3180030616755825889}
   - component: {fileID: 8845509661045372571}
   - component: {fileID: 1946393298333217377}
-  - component: {fileID: 1280759150543816937}
-  - component: {fileID: 8829510181077663624}
+  - component: {fileID: -4069226288623916021}
   - component: {fileID: 3406027035583833139}
   - component: {fileID: 6053024507631931383}
   m_Layer: 8
@@ -1049,7 +1048,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2840201622173824603}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2451077, y: 0.05000019, z: 107.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1060,7 +1059,7 @@ Transform:
   - {fileID: 18077563750002696}
   - {fileID: 6949597606802001013}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8845509661045372571
 Animator:
   serializedVersion: 5
@@ -1097,42 +1096,15 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4354229
+  m_Radius: 0.5
   m_Height: 1.9570352
   m_Direction: 1
   m_Center: {x: 0, y: 0.9305658, z: 0.23844719}
---- !u!54 &1280759150543816937
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2840201622173824603}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 126
-  m_CollisionDetection: 1
---- !u!114 &8829510181077663624
+--- !u!114 &-4069226288623916021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1150,8 +1122,9 @@ MonoBehaviour:
     m_Bits: 512
   speed: 10
   rotationSpeed: 5
-  sightRange: 30
-  attackRange: 2.76
+  isBlocked: 0
+  sightRange: 60
+  attackRange: 10
   playerInSightRange: 0
   playerInAttackRange: 0
   isDead: 0
@@ -1167,7 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714d2a27f451f3343ba06636a08f0183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AI: {fileID: 8829510181077663624}
+  AI: {fileID: -4069226288623916021}
   EnemyAnim: {fileID: 8845509661045372571}
 --- !u!114 &6053024507631931383
 MonoBehaviour:
@@ -1181,11 +1154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6f3b9280c2d734a9e6d449c9956d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemHealth: 5
+  enemHealth: 3
   remainingHealth: 0
   damage: 1
   Anim: {fileID: 3406027035583833139}
   ai: {fileID: 0}
+  deathEffectPrefab: {fileID: 5601413223970318326, guid: 2be5f1dac5f19764cac5c9611b4997a9, type: 3}
 --- !u!1 &3005070804057377100
 GameObject:
   m_ObjectHideFlags: 0

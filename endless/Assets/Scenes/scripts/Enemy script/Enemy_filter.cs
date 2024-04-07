@@ -6,13 +6,16 @@ public class Enemy_filer : MonoBehaviour
 {
 
 
-    
-    private void OnTriggerEnter(Collider collision)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemies")
+        if (collision.gameObject.tag == "Enemies" || collision.gameObject.tag == "Obstacles")
         {
-            Debug.Log("Collided");
+            //Debug.Log("Collided");
             Destroy(collision.gameObject);
         }
     }
+
+
+
 }

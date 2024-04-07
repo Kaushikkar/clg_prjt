@@ -17,11 +17,16 @@ public class SimpleTouchControl : MonoBehaviour
     public float drag;
     public float maxFallSpeed = 10.0f;
     [SerializeField] private float jumpForce;
-    public bool isMovingLeft ;
+    public bool isMovingLeft;
     public bool isMovingRight;
+    private AudioSource audioSource;
+    public AudioClip runAudio;
+    public float audioVolume = 1.0f; // Default volume
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -29,17 +34,21 @@ public class SimpleTouchControl : MonoBehaviour
         HandleTouchInput();
         MoveForward();
         RaycastHit hit;
+
         if (Physics.Raycast(transform.position, Vector3.down, out hit, rayCastDist, groundLayer))
         {
             isGrounded = true;
-
+            if (!isTap) // Only play run audio if not jumping
+            {
+                PlayAudio(runAudio);
+            }
         }
         else
         {
             isGrounded = false;
-
         }
-        if(Input.touchCount==0)
+
+        if (Input.touchCount == 0)
         {
             isMovingLeft = false;
             isMovingRight = false;
@@ -47,9 +56,8 @@ public class SimpleTouchControl : MonoBehaviour
         if (isTap)
         {
             Jump();
-
+            StopAudio();
         }
-        
     }
 
     void Jump()
@@ -59,7 +67,6 @@ public class SimpleTouchControl : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             rb.drag = drag;
             rb.velocity = new Vector3(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -maxFallSpeed, Mathf.Infinity), rb.velocity.z);
-
         }
     }
 
@@ -86,7 +93,6 @@ public class SimpleTouchControl : MonoBehaviour
         }
         else
         {
-
             tapTime = 0;
             isTap = false;
         }
@@ -96,7 +102,6 @@ public class SimpleTouchControl : MonoBehaviour
     {
         transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime, Space.World);
     }
-
 
     void OnTouchBegin(Vector2 touchPosition)
     {
@@ -111,12 +116,12 @@ public class SimpleTouchControl : MonoBehaviour
             return;
 
         float dist = touchPosition.x - initialTouchPos.x;
-        if(dist<0 )
+        if (dist < 0)
         {
             isMovingLeft = true;
             isMovingRight = false;
         }
-        else if(dist>0)
+        else if (dist > 0)
         {
             isMovingLeft = false;
             isMovingRight = true;
@@ -131,7 +136,6 @@ public class SimpleTouchControl : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, trgtpos, moveSpeed * Time.deltaTime);
         initialTouchPos = touchPosition;
 
-
         if (Time.time - tapTime > tapTimeThreshold)
         {
             isTap = false;
@@ -142,7 +146,6 @@ public class SimpleTouchControl : MonoBehaviour
     {
         isDragging = false;
 
-
         if (Time.time - tapTime < tapTimeThreshold)
         {
             isTap = true;
@@ -151,8 +154,34 @@ public class SimpleTouchControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("SpawnTrigger"))
-        { manager.SpawnTriggerEnter(); }
-        
+        if (other.CompareTag("SpawnTrigger"))
+        {
+            manager.SpawnTriggerEnter();
+        }
+    }
+
+    void PlayAudio(AudioClip clip)
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = clip;
+            audioSource.volume = audioVolume; // Set the volume
+            audioSource.Play();
+        }
+    }
+
+    void StopAudio()
+    {
+        audioSource.Stop();
+    }
+
+    // Method to set the volume of the audio
+    public void SetAudioVolume(float volume)
+    {
+        audioVolume = Mathf.Clamp01(volume); // Clamp volume between 0 and 1
+        if (audioSource.isPlaying)
+        {
+            audioSource.volume = audioVolume;
+        }
     }
 }

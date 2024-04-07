@@ -19,20 +19,22 @@ public class SpawnPointManager : MonoBehaviour
 
     public void SpawnObjectsAtRandomPoints()
     {
-        int totalObstaclesToSpawn = Random.Range(2, maxObstacles );
+        int totalObstaclesToSpawn = Random.Range(2, maxObstacles);
 
         for (int i = 0; i < totalObstaclesToSpawn; i++)
         {
             objectToSpawn = manager.Randomobs();
-            
 
             if (unusedSp.Count > 0)
             {
                 int randomIndex = GetRandomUnusedSpawnIndex();
                 Transform randomSpawnPoint = unusedSp[randomIndex];
 
-                // Instantiate the obstacle
-                GameObject spawnedObject = Instantiate(objectToSpawn, randomSpawnPoint.position, randomSpawnPoint.rotation);
+                // Generate a random rotation
+                Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+
+                // Instantiate the obstacle with random rotation
+                GameObject spawnedObject = Instantiate(objectToSpawn, randomSpawnPoint.position, randomRotation);
 
                 // Attach the spawned obstacle to the "Obstacle" tag
                 //spawnedObject.tag = obstacleTag;
